@@ -13,7 +13,7 @@ var client = new Twitter({
 
 router.get('/search', function(req,res){
   const search_query = req.query.q
-  client.get('statuses/home_timeline', {q: search_query}, function(error, tweets, response) {
+  client.get('statuses/user_timeline', {q: search_query}, function(error, tweets, response) {
      res.send(tweets);
   });
 })
