@@ -12,8 +12,6 @@ const T = new Twit({
 })
 
 router.get('/newTweet',function(req,res){
-  var tweeter = req.query.q
-
   T.get('statuses/user_timeline', function(err, data, response) {
     res.send(data)
   })
