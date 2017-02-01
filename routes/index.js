@@ -13,9 +13,20 @@ var client = new Twitter({
 
 /* GET home page. */
 
-router.get('/', function(req, res, next) {
-  let search = {screen_name: req.query.recent}
-  client.get('statuses/user_timeline', search , function(error, tweets, response) {
+router.get('/recent', function(req, res, next) {
+  let recent = {screen_name: req.query.recent}
+  client.get('statuses/user_timeline', recent , function(error, tweets, response) {
+    if (!error) {
+      res.json(tweets);
+    }
+    else {
+      res.json({ error: error });
+    }
+  });
+});
+router.get('/home', function(req, res, next) {
+  let home = {count: 20}
+  client.get('statuses/home_timeline', home , function(error, tweets, response) {
     if (!error) {
       res.json(tweets);
     }
