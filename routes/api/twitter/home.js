@@ -11,11 +11,9 @@ var client = new Twitter({
 })
 
 router.get('/', function (req, res) {
-  var searchQuery = req.query.q
+  var params = {screen_name: req.query.q}
   // search/tweets dari sananya!!
-  client.get('search/tweets', {q: searchQuery}, function (error, tweets, response) {
-    const result = JSON.parse(response.body)
-    console.log({result})
+  client.get('statuses/user_timeline', params, function (error, tweets, response) {
     res.send(tweets)
   })
   // res.send('search')
