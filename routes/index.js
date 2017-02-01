@@ -16,14 +16,12 @@ var client = new Twit({
   access_token_secret:  config.access_token_secret,
 })
 
-router.get('/search', function(req,res,next){
-  let quer = req.query.kata
-  client.get('search/tweets', { kata: quer, count: 5 }, function(error, data, response) {
+router.get('/home', function(req,res,next){
+  let quer = {screen_name:req.query.q}
+  client.get('statuses/user_timeline',quer , function(error, data, response) {
     if (error) throw error;
   res.send(data)
   })
-
-
 })
 
 module.exports = router;
