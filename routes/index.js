@@ -11,7 +11,7 @@ var client = new Twitter({
   access_token_secret: config.TWITTER_ACCESS_TOKEN_SECRET
 });
 
-router.get('/search', function(req,res){
+router.get('/user', function(req,res){
   const search_query = req.query.q
   client.get('statuses/user_timeline', {q: search_query}, function(error, tweets, response) {
      res.send(tweets);
