@@ -10,11 +10,11 @@ var client = new Twitter({
 });
 
 router.get('/search', function(req,res,next){
-  var searchQuery = req.query.q
+  var screenName = {screen_name: req.query.q}
 
-  client.get('statuses/user_timeline', {q: searchQuery}, function(error, tweets, response) {
+  client.get('statuses/user_timeline', screenName, function(error, tweets, response) {
   if (!error) {
-    console.log(tweets);
+    res.send(tweets);
   }
 })
 
